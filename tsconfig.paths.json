@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			// "@Components/*": ["./src/components/*"],
+			// "@ApiModels/*": ["./src/utils/api/models/*"],
+			// "@Services/*": ["./src/services/*"],
+			// "@Router/*": ["./src/router/*"],
+			// "@Redux/*": ["./src/redux/*"],
+			// "@Views/*": ["./src/views/*"],
+			// "@Utils/*": ["./src/utils/*"],
+            // "@Language/*": ["./src/utils/language/*"],
+			// "@Theme/*": ["./src/theme/*"],
+			// "@Assets/*": ["./src/assets/*"],
+			// "@Config/*": ["./src/config/*"],
+			// "@Layouts/*": ["./src/layouts/*"],
+			// "@Validators/*": ["./src/validators/*"]
+		}
+	}
+}
