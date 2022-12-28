@@ -1,0 +1,7 @@
+const ADD_INTEREST = 'ADD_INTEREST'
+const RESET_INTERESTS = 'RESET_INTERESTS'
+
+export default {
+    ADD_INTEREST,
+    RESET_INTERESTS
+}
