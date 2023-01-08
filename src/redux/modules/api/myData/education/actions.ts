@@ -1,10 +1,5 @@
 import types from './types'
 
-export interface IEducation {
-	listName?: string;
-	schoolList?: string[];
-}
-
 const add = (item: string) => ({
   type: types.ADD_SCHOOL, item
 })

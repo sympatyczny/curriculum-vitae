@@ -3,9 +3,20 @@ import { produce } from 'immer';
 
 
 const INITIAL_STATE = {
-    listName: 'My interests',
-    interestList: [
-        'books', 'travels'
+    "name": "My interests",
+    "hobby": [
+        {
+            "interestName": "Books",
+            "interestDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        },
+        {
+            "interestName": "Hiking",
+            "interestDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        },
+        {
+            "interestName": "Financial markets",
+            "interestDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        }
     ]
 }
 
@@ -13,12 +24,12 @@ const interestReducer = (state = INITIAL_STATE, action: { type: any; item: any }
     switch (action.type) {
         case types.ADD_INTEREST:
             return produce(state, draftState => {
-                draftState.interestList.push(action.item)
+                draftState.hobby.push(action.item)
             })
         case types.RESET_INTERESTS:
             return produce(state, draftState => {
-                draftState.listName = ''
-                draftState.interestList = []
+                draftState.name = ''
+                draftState.hobby = []
             })
         default:
             return state
