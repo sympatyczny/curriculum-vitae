@@ -3,22 +3,27 @@ import { produce } from 'immer';
 
 
 const INITIAL_STATE = {
-    listName: 'My informations',
-    personalDataList: [
-        'Piotr', 'K.', '11111111'
-    ]
+    "name": "About me",
+    "informations": {
+        "firstName": "Piotr",
+        "lastName": "Kwieciński",
+        "phoneNumber": "xxxxxx887",
+        "emailAddress": "xxx@gmail.com",
+        "linkedin": "linkedin.com/in/piotrkwiecinski",
+        "gitRepository": "github.com/sympatyczny",
+        // "personalDescription": "Information about me",
+    }
 }
 
 const personalDataReducer = (state = INITIAL_STATE, action: { type: any; item: any }) => {
     switch (action.type) {
         case types.ADD_PERSONAL_DATA:
             return produce(state, draftState => {
-                draftState.personalDataList.push(action.item)
+                // draftState.informations.push(action.item)
             })
         case types.RESET_PERSONAL_DATA:
             return produce(state, draftState => {
-                draftState.listName = ''
-                draftState.personalDataList = []
+                draftState.name = ''
             })
         default:
             return state
