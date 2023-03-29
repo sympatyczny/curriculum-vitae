@@ -1,17 +1,27 @@
-const customTabStyle = () => ({
+import { tokens } from "../../../../../theme";
+
+const customTabStyle = (theme) => ({
     tabWrapper: {
-        width: '100%',
-        height: '350px',
-        margin: '30px',
-        backgroundColor: '#e1e2fe',
+        height: '200px',
         display: 'flex',
         justifyContent: 'center',
         borderRadius: '8px',
-        border: '2px solid #e1e2fe',
+        margin: '20px',
+        minWidth: '300px',
+        border: `2px solid ${tokens(theme.palette.mode).grey[500]} `,
+        opacity: "0.7",
+        '&:hover': {
+            cursor: 'pointer',
+            border: `2px solid ${tokens(theme.palette.mode).blueAccent[500]} `,
+            color: `${tokens(theme.palette.mode).blueAccent[500]} !important`,
+            opacity: "1.0",
+        },
     },
+
     tabTitle: {
         marginTop: '20px',
     },
+
     tabButton: {
         width: '100%',
         height: '100%',

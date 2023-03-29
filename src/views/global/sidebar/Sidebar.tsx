@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, MenuItem, ProSidebar } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import { tokens } from "../../../theme";
@@ -7,7 +7,6 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import "react-pro-sidebar/dist/css/styles.css";
 import piotr from "../../../assets/img/piotr.jpg";
 import styles from "../../../assets/jss/views/global/sidebar/sidebarStyle";
-import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import WorkHistoryOutlinedIcon from '@mui/icons-material/WorkHistoryOutlined';
@@ -16,7 +15,9 @@ import SportsSoccerOutlinedIcon from '@mui/icons-material/SportsSoccerOutlined';
 import MenuOpenOutlinedIcon from '@mui/icons-material/MenuOpenOutlined';
 import { CustomMenuItem } from "./subcomponents/MenuItem";
 import { TabName } from '../../../utils/constants/tabName';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import selectedTabActions from "../../../redux/modules/settings/selectedTab/actions";
+import collapseSidebarActions from "../../../redux/modules/settings/collapsedSidebar/actions";
 
 // @ts-ignore
 const useStyles = makeStyles(styles);
@@ -26,9 +27,31 @@ const Sidebar = () => {
     const classes = useStyles();
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const [isCollapsed, setIsCollapsed] = useState(false);
-    const [selected, setSelected] = useState("Dashboard");
-    const personalData = useSelector((state: types.redux.IState) => state.myData.personalData.informations);
+
+    const selectedTab = useSelector((state: types.redux.IState) => state.settings.selectedTab.selectedTab);
+    const collapsedSidebar = useSelector((state: types.redux.IState) => state.settings.collapsedSidebar.collapsedSidebar);
+    const personalData = useSelector((state: types.redux.IState) => state.myData.personalData.information);
+    const [isCollapsed, setIsCollapsed] = useState(collapsedSidebar);
+    const [selected, setSelected] = useState(selectedTab);
+    const dispatch = useDispatch();
+
+    const setSelectedTab = (tab: string) => {
+        dispatch(selectedTabActions.setTab(tab))
+    }
+
+    useEffect(() => {
+        setSelected(selectedTab);
+    }, [selectedTab])
+
+    const setCollapse = (collapse: boolean) => {
+        dispatch(collapseSidebarActions.collapseSidebar(collapse))
+        window.localStorage.setItem('collapsed', collapse.toString())
+    }
+
+    useEffect(() => {
+        setIsCollapsed(collapsedSidebar)
+    }, [collapsedSidebar])
+
 
     return (
         <Box className={classes.sidebarWrapper}
@@ -36,24 +59,12 @@ const Sidebar = () => {
                 "& .pro-sidebar-inner": {
                     background: `${colors.primary[400]} !important`,
                 },
-                // "& .pro-icon-wrapper": {
-                //     backgroundColor: "transparent !important",
-                // },
-                // "& .pro-inner-item": {
-                //     padding: "5px 35px 5px 20px !important",
-                // },
-                // "& .pro-inner-item:hover": {
-                //     color: "#868dfb !important",
-                // },
-                // "& .pro-menu-item.active": {
-                //     color: "#6870fa !important",
-                // },
             }}
         >
-            <ProSidebar collapsed={isCollapsed}>
+            <ProSidebar collapsed={isCollapsed} breakPoint='md'>
                 <Menu>
                     <MenuItem
-                        onClick={() => setIsCollapsed(!isCollapsed)}
+                        onClick={() => setCollapse(!isCollapsed)}
                         icon={isCollapsed ? <MenuOutlinedIcon sx={{ fontSize: 30 }} /> : undefined}
                         style={{
                             margin: "10px 0 20px 0",
@@ -65,7 +76,7 @@ const Sidebar = () => {
                                 <Typography variant="h6" color={colors.grey[100]}>
                                     {"Curriculum Vitae"}
                                 </Typography>
-                                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                                <IconButton onClick={() => setCollapse(!isCollapsed)}>
                                     <MenuOpenOutlinedIcon sx={{ fontSize: 30 }} />
                                 </IconButton>
                             </Box>
@@ -78,9 +89,9 @@ const Sidebar = () => {
                                 <img
                                     alt="profile-user"
                                     width="100px"
-                                    height="100px"
+                                    height="120px"
                                     src={piotr}
-                                    style={{ cursor: "pointer", borderRadius: "50%" }}
+                                    style={{ cursor: "pointer", borderRadius: "8%" }}
                                 />
                             </Box>
                             <Box textAlign="center">
@@ -100,7 +111,7 @@ const Sidebar = () => {
                             to="/"
                             icon={<HomeOutlinedIcon sx={{ fontSize: 30 }} />}
                             selected={selected}
-                            setSelected={setSelected}
+                            setSelected={setSelectedTab}
                         />
 
                         {!isCollapsed && <div className={classes.subtitle}>
@@ -115,7 +126,7 @@ const Sidebar = () => {
                             to="/experience"
                             icon={<WorkHistoryOutlinedIcon sx={{ fontSize: 30 }} />}
                             selected={selected}
-                            setSelected={setSelected}
+                            setSelected={setSelectedTab}
                         />
                         {!isCollapsed && <div className={classes.subtitle}>
                             <Typography variant="h3" color={colors.grey[300]} >
@@ -128,14 +139,14 @@ const Sidebar = () => {
                             to="/personal-data"
                             icon={<PersonOutlinedIcon sx={{ fontSize: 30 }} />}
                             selected={selected}
-                            setSelected={setSelected}
+                            setSelected={setSelectedTab}
                         />
                         <CustomMenuItem
                             title={TabName.EDUCATION}
                             to="/education"
                             icon={<SchoolOutlinedIcon sx={{ fontSize: 30 }} />}
                             selected={selected}
-                            setSelected={setSelected}
+                            setSelected={setSelectedTab}
                         />
                         {!isCollapsed && <div className={classes.subtitle}>
                             <Typography variant="h3" color={colors.grey[300]} >
@@ -148,7 +159,7 @@ const Sidebar = () => {
                             to="/interests"
                             icon={<SportsSoccerOutlinedIcon sx={{ fontSize: 30 }} />}
                             selected={selected}
-                            setSelected={setSelected}
+                            setSelected={setSelectedTab}
                         />
                     </Box>
                 </Menu>

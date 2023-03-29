@@ -2,7 +2,6 @@ import produce from 'immer';
 import { LanguageType } from './actions';
 import types from './types'
 
-
 const INITIAL_STATE = {
     language: LanguageType.EN
 }

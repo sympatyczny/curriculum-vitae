@@ -1,17 +1,16 @@
 import types from './types'
 import { produce } from 'immer';
 
-
 const INITIAL_STATE = {
-    "name": "About me",
-    "informations": {
-        "firstName": "Piotr",
-        "lastName": "Kwieciński",
-        "phoneNumber": "xxxxxx887",
-        "emailAddress": "xxx@gmail.com",
-        "linkedin": "linkedin.com/in/piotrkwiecinski",
-        "gitRepository": "github.com/sympatyczny",
-        // "personalDescription": "Information about me",
+    name: "About me",
+    information: {
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        emailAddress: "",
+        linkedin: "",
+        gitRepository: "",
+        personalDescription: "",
     }
 }
 
@@ -19,7 +18,11 @@ const personalDataReducer = (state = INITIAL_STATE, action: { type: any; item: a
     switch (action.type) {
         case types.ADD_PERSONAL_DATA:
             return produce(state, draftState => {
-                // draftState.informations.push(action.item)
+                return draftState = { ...state, ...action.item }
+            })
+        case types.SET_PERSONAL_DATA:
+            return produce(state, draftState => {
+                return draftState = { ...state, ...action.item }
             })
         case types.RESET_PERSONAL_DATA:
             return produce(state, draftState => {

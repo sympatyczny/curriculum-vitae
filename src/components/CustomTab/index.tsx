@@ -1,10 +1,8 @@
 import styles from "../../assets/jss/views/components/customTab/customTabStyle";
-import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { ReactChild, ReactFragment, ReactPortal, useMemo, useState } from 'react';
-import { useSelector } from "react-redux";
+import { useState } from 'react';
 
 // @ts-ignore
 const useStyles = makeStyles(styles);
@@ -30,8 +28,8 @@ const CustomTab = ({
 
     const classes = useStyles();
     const [path, setPath] = useState('');
-
     let navigate = useNavigate();
+
     const routeChange = (tabType: string) => {
 
         switch (tabType) {
@@ -62,20 +60,14 @@ const CustomTab = ({
     }
 
     return (
-
         <div className={classes.tabWrapper}>
-            <Button className={classes.tabButton} onClick={() => routeChange(tabType)}>
-                <div>
-                    <Typography className={classes.tabTitle} variant="h2" marginTop={2}>
-                        {title}
-                    </Typography>
-                </div>
-                <div>
-                    {icon}
-                </div>
+            <Button className={classes.tabButton} onClick={() => routeChange(tabType)} color="inherit">
+                <Typography className={classes.tabTitle} variant="h1" marginTop={2} >
+                    {title}
+                </Typography>
+                {icon}
             </Button>
         </div>
-
     )
 }
 export default CustomTab;

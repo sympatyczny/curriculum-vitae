@@ -6,7 +6,7 @@ export enum LanguageType {
 }
 
 export interface ILanguage {
-    language: LanguageType;
+    language?: LanguageType;
 }
 
 const changeLanguage = (item: LanguageType) => ({

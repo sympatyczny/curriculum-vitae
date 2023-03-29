@@ -13,7 +13,12 @@ const reset = (item: string) => ({
     type: types.RESET_INTERESTS, item
 })
 
+const set = (item: string) => ({
+    type: types.SET_INTERESTS, item
+})
+
 export default {
     add,
-    reset
+    reset,
+    set,
 }

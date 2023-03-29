@@ -1,6 +1,4 @@
-
 const sidebarStyle = () => ({
-
 
     sidebarWrapper: {
         "& .pro-icon-wrapper": {

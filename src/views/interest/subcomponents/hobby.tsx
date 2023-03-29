@@ -1,5 +1,4 @@
 import styles from "../../../assets/jss/views/interest/interestStyle";
-import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from "@mui/material";
 
@@ -17,7 +16,6 @@ const Hobby = ({
     interestDescription,
     icon,
 }: IHobbyProps) => {
-
 
     const classes = useStyles();
 

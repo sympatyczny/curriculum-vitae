@@ -8,7 +8,12 @@ const reset = (item: string) => ({
   type: types.RESET_SCHOOLS, item
 })
 
+const set = (item: string) => ({
+ type: types.SET_EDUCATION, item
+})
+
 export default {
   add,
-  reset
+  reset,
+  set,
 }

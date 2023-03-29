@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { CssBaseline, ThemeProvider } from "@mui/material";
-// import { ColorModeContext, useMode } from "./theme";
 import { ColorModeContext, useMode } from "./theme";
 import Topbar from './views/global/Topbar';
 import { Route, Routes } from 'react-router-dom';
@@ -11,13 +10,17 @@ import Experience from './views/experience/index';
 import PersonalData from './views/personalData/index';
 import Interest from './views/interest/index';
 import Sidebar from './views/global/sidebar/Sidebar';
+import Layout from './components/Layout/Layout';
 
 const App = () => {
 
   const language = useSelector((state: any) => state.settings.language.language);
 
   const [theme, colorMode] = useMode();
-  // const [isSidebar, setIsSidebar] = useState(true);
+
+  const style = {
+    background: theme.palette.background.default,
+  }
 
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -25,19 +28,24 @@ const App = () => {
         <CssBaseline />
         <div className='app'>
           <Sidebar />
-          <main className="content">
+          {/* <main className="content"> */}
+          <main className="content" style={style}>
             <Topbar />
-            <Routes>
-              <Route path='/' element={<Dashboard />} />
-              <Route path='/education' element={<Education />} />
-              <Route path='/experience' element={<Experience />} />
-              <Route path='/personal-data' element={<PersonalData />} />
-              <Route path='/interests' element={<Interest />} />
-            </Routes>
+            <div className='content-body'>
+              <Routes>
+                <Route path='/' element={<Layout />} >
+                  <Route index element={<Dashboard />} />
+                  <Route path='education' element={<Education />} />
+                  <Route path='experience' element={<Experience />} />
+                  <Route path='personal-data' element={<PersonalData />} />
+                  <Route path='interests' element={<Interest />} />
+                </Route>
+              </Routes>
+            </div>
           </main>
         </div>
-       </ThemeProvider>
-     </ColorModeContext.Provider>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 };
 

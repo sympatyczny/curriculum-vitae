@@ -5,9 +5,15 @@ body,
 #root,
 .app,
 .content {
-  height: 100%;
+  height: "auto";
   width: 100%;
   font-family: 'Source Sans Pro', sans-serif;
+  min-height: 110vh;
+}
+
+.content-body {
+  display: flex;
+  flex-direction: column;
 }
 
 .app {

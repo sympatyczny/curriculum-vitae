@@ -1,7 +1,7 @@
 import { MenuItem } from "react-pro-sidebar";
 import { Typography, useTheme } from '@mui/material';
 import { Link } from "react-router-dom";
-import { tokens, useMode } from "../../../../theme";
+import { tokens } from "../../../../theme";
 import { makeStyles } from '@material-ui/core/styles';
 import styles from "../../../../assets/jss/views/global/sidebar/subcomponents/menuItemStyle";
 

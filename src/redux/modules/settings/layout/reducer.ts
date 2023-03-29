@@ -1,17 +1,19 @@
+import produce from 'immer';
 import { LayoutType } from "./actions";
 import types from "./types";
 
+const theme = localStorage.getItem("theme") ? localStorage.getItem("theme") : LayoutType.LIGHT
+
 const INITIAL_STATE = {
-    layout: LayoutType.WHITE
+    layout: theme
 }
-// const init = getBrowserLanguage();
 
 const personalDataReducer = (state = INITIAL_STATE, action: { type: any; item: any }) => {
     switch (action.type) {
         case types.CHANGE_LAYOUT:
-            return {
-                ...state, layout: [action.item]
-            }
+            return produce(state, draftState => {
+                draftState.layout = action.item
+            })
         default:
             return state
     }

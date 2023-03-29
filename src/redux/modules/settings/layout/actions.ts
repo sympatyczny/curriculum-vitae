@@ -1,7 +1,7 @@
 import types from './types'
 
 export enum LayoutType {
-    WHITE = 'WHITE',
+    LIGHT = 'LIGHT',
     DARK = 'DARK',
 }
 

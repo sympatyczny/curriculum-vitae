@@ -1,9 +1,11 @@
-import { createContext, useState, useMemo } from "react";
+import { createContext, useState, useMemo, useEffect } from "react";
 import { createTheme } from "@mui/material/styles";
 import { PaletteMode } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import actions, { LayoutType } from "../src/redux/modules/settings/layout/actions";
 
 export const tokens = (mode: PaletteMode) => ({
-    ...(mode === "dark"
+    ...(mode === LayoutType.DARK.toLowerCase()
         ? {
             grey: {
                 100: "#e0e0e0",
@@ -15,6 +17,7 @@ export const tokens = (mode: PaletteMode) => ({
                 700: "#3d3d3d",
                 800: "#292929",
                 900: "#141414",
+                1000: '#1f2a40',
             },
             primary: {
                 100: "#d0d1d5",
@@ -59,7 +62,11 @@ export const tokens = (mode: PaletteMode) => ({
                 700: "#3e4396",
                 800: "#2a2d64",
                 900: "#151632",
+                1000: 'radial-gradient(circle, rgba(18,30,103,1) 1%, rgba(20,27,45,1) 92%)',
             },
+            gradient: {
+                light: "radial-gradient(circle, rgba(18,30,103,1) 1%, rgba(20,27,45,1) 92%)",
+            }
         }
         : {
             grey: {
@@ -72,6 +79,7 @@ export const tokens = (mode: PaletteMode) => ({
                 700: "#a3a3a3",
                 800: "#c2c2c2",
                 900: "#e0e0e0",
+                1000: "#f2f0f0",
             },
             primary: {
                 100: "#040509",
@@ -117,16 +125,18 @@ export const tokens = (mode: PaletteMode) => ({
                 800: "#c3c6fd",
                 900: "#e1e2fe",
             },
+            gradient: {
+                light: "radial-gradient(circle, rgba(242,240,240,1) 56%, rgba(252,252,252,1) 100%)",
+            }
         }),
 });
-
 
 export const themeSettings = (mode: PaletteMode) => {
     const colors = tokens(mode);
     return {
         palette: {
             mode: mode,
-            ...(mode === "dark"
+            ...(mode === LayoutType.DARK.toLowerCase()
                 ? {
                     primary: {
                         main: colors.primary[500],
@@ -140,8 +150,8 @@ export const themeSettings = (mode: PaletteMode) => {
                         light: colors.grey[100],
                     },
                     background: {
-                        default: colors.primary[500],
-                    },
+                        default: colors.gradient.light,
+                    }
                 }
                 : {
                     // light mode
@@ -157,7 +167,7 @@ export const themeSettings = (mode: PaletteMode) => {
                         light: colors.grey[100],
                     },
                     background: {
-                        default: "#fcfcfc",
+                        default: colors.gradient.light,
                     },
                 }),
         },
@@ -187,6 +197,10 @@ export const themeSettings = (mode: PaletteMode) => {
             h6: {
                 fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
                 fontSize: 14,
+                ':hover': {
+                    textDecoration: 'underline',
+                    color: colors.blueAccent[500],
+                }
             },
         },
     };
@@ -197,15 +211,22 @@ export const ColorModeContext = createContext({
 });
 
 export const useMode = () => {
-    const [mode, setMode] = useState("dark" as PaletteMode);
+    const layout = useSelector((state: types.redux.IState) => state.settings.layout.layout);
+    const [mode, setMode] = useState(layout.toLowerCase() as PaletteMode);
+
+    const dispatch = useDispatch();
 
     const colorMode = useMemo(
         () => ({
             toggleColorMode: () =>
-                setMode((prev) => (prev === "light" ? "dark" as PaletteMode : "light" as PaletteMode)),
-        }),
-        []
+                setMode((prev) => (prev === LayoutType.LIGHT.toLowerCase() ? LayoutType.DARK.toLowerCase() as PaletteMode : LayoutType.LIGHT.toLowerCase() as PaletteMode)),
+        }), [],
     );
+
+    useEffect(() => {
+        dispatch(actions.changeLayout(mode.toUpperCase() as LayoutType))
+        window.localStorage.setItem('theme', mode.toUpperCase());
+    }, [mode])
 
     const theme: any = useMemo(() => createTheme(themeSettings(mode)), [mode]);
     return [theme, colorMode];

@@ -1,9 +1,7 @@
-
-import { IEducation } from '@Redux/modules/api/personalData/education/actions';
-import { IExperience } from '@Redux/modules/api/personalData/education/actions';
-import { IPersonalData } from '@Redux/modules/api/personalData/education/actions';
-import { IInterests} from '@Redux/modules/api/personalData/education/actions';
-
+import { IEducation } from '@Redux/modules/api/myData/education/actions';
+import { IExperience } from '@Redux/modules/api/myData/experience/actions';
+import { IPersonalData } from '@Redux/modules/api/myData/personalData/actions';
+import { IInterests } from '@Redux/modules/api/mydata/interest/actions';
 
 declare global {
 	namespace types {
@@ -18,6 +16,8 @@ declare global {
 				settings: {
 					language: types.redux.settings.language;
 					layout: types.redux.settings.layout;
+					selectedTab: types.redux.settings.selectedTab;
+					collapsedSidebar: types.redux.settings.collapsedSidebar;
 					config: ISettingsConfig;
 				};
 			}

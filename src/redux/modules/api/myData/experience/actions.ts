@@ -13,7 +13,12 @@ const reset = (item: string) => ({
   type: types.RESET_WORKPLACES, item
 })
 
+const set = (item: string) => ({
+  type: types.SET_EXPERIENCE, item
+})
+
 export default {
   add,
-  reset
+  reset,
+  set,
 }
