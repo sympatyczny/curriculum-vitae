@@ -61,7 +61,7 @@ const Sidebar = () => {
                 },
             }}
         >
-            <ProSidebar collapsed={isCollapsed} breakPoint='md'>
+            <ProSidebar collapsed={isCollapsed} breakPoint='sm'>
                 <Menu>
                     <MenuItem
                         onClick={() => setCollapse(!isCollapsed)}

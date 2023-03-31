@@ -9,6 +9,9 @@ const dashboardStyle = (theme) => ({
         minHeight: '600px',
         width: "100%",
         position: "relative",
+        [theme.breakpoints.down('md')]: {
+            flexDirection: 'column',
+        },
         '&:before': {
             backgroundImage: `url(${background})`,
             backgroundRepeat: "no-repeat",
@@ -24,6 +27,9 @@ const dashboardStyle = (theme) => ({
             opacity: 0.1,
             "-webkit-mask-image": "-webkit-radial-gradient(white, transparent 60%)",
             height: "90vh",
+            [theme.breakpoints.down('md')]: {
+                backgroundPosition: "-150px -50px",
+            }
         },
     },
     icon: {

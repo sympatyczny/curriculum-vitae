@@ -43,8 +43,14 @@ const educationStyle = (theme) => ({
             opacity: "1.0",
         },
         zIndex: "1",
+        [theme.breakpoints.down('xs')]: {
+            marginTop: '40px',
+            '& .MuiTypography-root': {
+                marginTop: '10px',
+            },
+            border: 'none',
+        },
     },
-
     schoolNameWrapper: {
         display: 'flex',
         justifyContent: 'center',

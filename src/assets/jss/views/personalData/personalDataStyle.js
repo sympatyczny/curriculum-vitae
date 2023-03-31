@@ -23,7 +23,6 @@ const personalDataStyle = (theme) => ({
             "-webkit-mask-image": "-webkit-radial-gradient(white, transparent 60%)",
             height: '85vh',
         },
-
     },
     IconBreadcrumbsWrapper: {
         marginLeft: '20px',
@@ -34,6 +33,7 @@ const personalDataStyle = (theme) => ({
         flexDirection: 'column',
         borderRadius: '8px',
         padding: '10px',
+        width: '300px',
         '& .MuiListItemButton-root:hover': {
             '&, & .MuiListItemIcon-root': {
                 color: `${tokens(theme.palette.mode).blueAccent[500]} `,

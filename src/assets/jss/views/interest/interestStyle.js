@@ -45,13 +45,25 @@ const interestStyle = (theme) => ({
             opacity: "1.0",
         },
         zIndex: "1",
+
+        [theme.breakpoints.down('xs')]: {
+            border: 'none',
+            '& .MuiTypography-root': {
+                marginTop: '10px',
+            },
+        }
     },
     interestBodyWrapper: {
         display: 'flex',
         flexDirection: 'row',
     },
     iconWrapper: {
+        [theme.breakpoints.down('xs')]: {
+            '& .MuiSvgIcon-root': {
+                fontSize: '50px',
 
+            },
+        }
     },
     interestNameWrapper: {
         display: 'flex',
