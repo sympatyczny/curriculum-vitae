@@ -45,6 +45,12 @@ const experienceStyle = (theme) => ({
             opacity: "1.0",
         },
         zIndex: "1",
+        [theme.breakpoints.down('xs')]: {
+            border: 'none',
+            '& .MuiTypography-root': {
+                marginTop: '10px',
+            },
+        }
     },
 
     hobbyWrapper: {

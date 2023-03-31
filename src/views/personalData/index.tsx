@@ -102,12 +102,12 @@ const PersonalData = () => {
                                 <ConditionalRender
                                     show={personalData.information.personalDescription}
                                     onTrue={() => (
-                                        <ListItem disablePadding>
+                                        <ListItem disablePadding sx={{ display: 'flex', flexDirection: 'column' }}>
                                             <ListItemButton onClick={handleClick}>
                                                 <ListItemText primary="information about me: " />
                                                 {open ? <ExpandLess /> : <ExpandMore />}
                                             </ListItemButton>
-                                            <Collapse in={open} timeout="auto" unmountOnExit>
+                                            <Collapse in={open} timeout="auto" unmountOnExit orientation="horizontal">
                                                 <List component="div" disablePadding>
                                                     <ListItemButton sx={{ pl: 3 }}>
                                                         <ListItemText primary={personalData.information.personalDescription} />

@@ -8,14 +8,25 @@ const customTabStyle = (theme) => ({
         borderRadius: '8px',
         margin: '20px',
         minWidth: '300px',
-        border: `2px solid ${tokens(theme.palette.mode).grey[500]} `,
         opacity: "0.7",
-        '&:hover': {
+        '&:hover, &:focus, &:focus-visible': {
             cursor: 'pointer',
-            border: `2px solid ${tokens(theme.palette.mode).blueAccent[500]} `,
+            border: 'none',
             color: `${tokens(theme.palette.mode).blueAccent[500]} !important`,
             opacity: "1.0",
         },
+        "-webkit-box-shadow": "0 1px 23.5px 9px #dddddd",
+        "-moz-box-shadow": "0 1px 23.5px 9px #dddddd",
+        "box-shadow": "0 1px 23.5px 9px #dddddd",
+        [theme.breakpoints.down('xs')]: {
+            maxWidth: '190px',
+            minWidth: '190px',
+            maxHeight: '100px',
+            '& .MuiTypography-h1': {
+                fontSize: '22px',
+            }
+        },
+
     },
 
     tabTitle: {
@@ -25,6 +36,14 @@ const customTabStyle = (theme) => ({
     tabButton: {
         width: '100%',
         height: '100%',
+
+        [theme.breakpoints.down('xs')]: {
+            'MuiTypography-root': {
+                fontSize: '12px',
+            }
+        }
+
+
     },
 });
 
