@@ -4,16 +4,18 @@ const topBarStyle = (theme) => ({
 
     tobBar: {
         '& .MuiTypography-root': {
-            marginTop: '10px',
             color: `${tokens(theme.palette.mode).blueAccent[500]} `,
             flexGrow: 1,
             alignItems: 'center',
             marginLeft: '10px',
-            marginY: 'auto',
-            letterSpacing: '5px',
+            letterSpacing: '2px',
             fontWeight: '700',
-            fontSize: '25px'
+            fontSize: '25px',
+            marginTop: 'auto',
+            marginBottom: 'auto',
         },
+        marginTop: 'auto',
+        marginBottom: 'auto',
     },
 });
 

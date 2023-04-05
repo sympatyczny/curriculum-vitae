@@ -25,6 +25,8 @@ const interestStyle = (theme) => ({
             opacity: 0.1,
             "-webkit-mask-image": "-webkit-radial-gradient(white, transparent 70%)",
         },
+        minHeight: '85vh',
+        justifyContent: 'space-between',
     },
     IconBreadcrumbsWrapper: {
         marginLeft: '20px',
@@ -71,6 +73,20 @@ const interestStyle = (theme) => ({
     },
     interestDescriptionWrapper: {
         display: 'flex',
+    },
+    interestProgressWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        height: '300px',
+    },
+    button: {
+        position: "-webkit-sticky",
+        position: "absolute",
+        right: '30px',
+        top: '30px',
+        alignSelf: 'center',
+        zIndex: '2',
     },
 });
 

@@ -23,6 +23,8 @@ const educationStyle = (theme) => ({
             "-webkit-mask-image": "-webkit-radial-gradient(white, transparent 60%)",
             height: "85vh",
         },
+        minHeight: '85vh',
+        justifyContent: 'space-between',
     },
     IconBreadcrumbsWrapper: {
         marginLeft: '20px',
@@ -71,6 +73,20 @@ const educationStyle = (theme) => ({
     courseWrapper: {
         display: 'flex',
         justifyContent: 'center',
+    },
+    educationProgressWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        height: '300px',
+    },
+    button: {
+        position: "-webkit-sticky",
+        position: "absolute",
+        right: '30px',
+        top: '30px',
+        alignSelf: 'center',
+        zIndex: '2',
     },
 });
 

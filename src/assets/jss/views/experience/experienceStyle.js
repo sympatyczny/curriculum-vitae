@@ -23,6 +23,8 @@ const experienceStyle = (theme) => ({
             "-webkit-mask-image": "-webkit-radial-gradient(white, transparent 70%)",
             height: '85vh',
         },
+        minHeight: '85vh',
+        justifyContent: 'space-between',
     },
 
     IconBreadcrumbsWrapper: {
@@ -93,6 +95,20 @@ const experienceStyle = (theme) => ({
     },
     listSubheader: {
         backgroundColor: "transparent !important",
+    },
+    experienceProgressWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        height: '300px',
+    },
+    button: {
+        position: "-webkit-sticky",
+        position: "absolute",
+        right: '30px',
+        top: '30px',
+        alignSelf: 'center',
+        zIndex: '2',
     },
 });
 
