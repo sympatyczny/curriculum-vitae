@@ -3,6 +3,9 @@ import { createServer } from "miragejs";
 createServer({
 
     routes() {
+
+        this.passthrough('https://api.emailjs.com/api/v1.0/email/send-form', ['post']);
+
         this.namespace = "api"
         this.logging = false
         this.get("/experience", () => ({

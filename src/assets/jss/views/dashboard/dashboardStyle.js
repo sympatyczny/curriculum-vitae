@@ -34,6 +34,13 @@ const dashboardStyle = (theme) => ({
     },
     icon: {
     },
+    button: {
+        position: "-webkit-sticky",
+        position: "absolute",
+        right: '30px',
+        top: '30px',
+        alignSelf: 'center',
+    },
 
 });
 

@@ -1,7 +1,7 @@
 import styles from "../../assets/jss/views/education/educationStyle";
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux";
-import { Divider, Typography } from "@mui/material";
+import { CircularProgress, Divider, Typography } from "@mui/material";
 import CustomBreadcrumbs from "../../components/CustomBreadcrumbs/CustomBreadcrumbs";
 import { TabName } from '../../utils/constants/tabName';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import actions from "../../redux/modules/api/myData/education/actions";
 import ConditionalRender from "../../components/ConditionalRender/ConditionalRender"
 import selectTabActions from "../../redux/modules/settings/selectedTab/actions";
+import CustomFloatingAction from "../../components/CustomButtons/CustomFloatingAction";
+import CustomSpeedDial from "../../components/CustomButtons/CustomSpeedDial";
 
 // @ts-ignore
 const useStyles = makeStyles(styles);
@@ -44,6 +46,9 @@ const Education = () => {
                 show={education.schools[0].id}
                 onTrue={() => (
                     <div className={classes.educationWrapper}>
+                        <div className={classes.button}>
+                            <CustomSpeedDial />
+                        </div>
                         {education.schools.map((school: any) => (
                             <div className={classes.schoolWrapper}>
                                 <div className={classes.schoolNameWrapper}>
@@ -77,13 +82,15 @@ const Education = () => {
                                 </div>
                             </div>
                         ))}
+                        <CustomFloatingAction />
                     </div>
                 )}
                 onFalse={() => (
-                    <h3>Loading...</h3>
+                    <div className={classes.educationProgressWrapper} >
+                        <CircularProgress color="inherit" />
+                    </div>
                 )}
             />
-
         </>
     )
 }

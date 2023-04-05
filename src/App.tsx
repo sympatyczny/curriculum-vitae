@@ -11,6 +11,7 @@ import PersonalData from './views/personalData/index';
 import Interest from './views/interest/index';
 import Sidebar from './views/global/sidebar/Sidebar';
 import Layout from './components/Layout/Layout';
+import ContactMe from './views/contactMe';
 
 const App = () => {
 
@@ -39,6 +40,7 @@ const App = () => {
                   <Route path='experience' element={<Experience />} />
                   <Route path='personal-data' element={<PersonalData />} />
                   <Route path='interests' element={<Interest />} />
+                  <Route path='contact-me' element={<ContactMe />} />
                 </Route>
               </Routes>
             </div>

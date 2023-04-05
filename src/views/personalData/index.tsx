@@ -1,6 +1,6 @@
 import styles from "../../assets/jss/views/personalData/personalDataStyle";
 import { makeStyles } from '@material-ui/core/styles';
-import { Collapse, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { CircularProgress, Collapse, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -15,6 +15,8 @@ import CustomBreadcrumbs from "../../components/CustomBreadcrumbs/CustomBreadcru
 import { TabName } from '../../utils/constants/tabName';
 import actions from "../../redux/modules/api/myData/personalData/actions";
 import selectTabActions from "../../redux/modules/settings/selectedTab/actions";
+import CustomFloatingAction from "../../components/CustomButtons/CustomFloatingAction";
+import CustomSpeedDial from "../../components/CustomButtons/CustomSpeedDial";
 
 // @ts-ignore
 const useStyles = makeStyles(styles);
@@ -49,6 +51,9 @@ const PersonalData = () => {
                 show={personalData.information.firstName}
                 onTrue={() => (
                     <div className={classes.personalDataWrapper}>
+                        <div className={classes.button}>
+                            <CustomSpeedDial />
+                        </div>
                         <div className={classes.InformationsWrapper}>
                             <List>
                                 <ListItem disablePadding>
@@ -119,10 +124,13 @@ const PersonalData = () => {
                                 />
                             </List>
                         </div>
+                        <CustomFloatingAction />
                     </div>
                 )}
                 onFalse={() => (
-                    <h3>Loading...</h3>
+                    <div className={classes.personalDataProgressWrapper} >
+                        <CircularProgress color="inherit" />
+                    </div>
                 )}
             />
         </>

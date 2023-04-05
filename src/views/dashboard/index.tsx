@@ -9,6 +9,7 @@ import SportsSoccerOutlinedIcon from '@mui/icons-material/SportsSoccerOutlined';
 import { useEffect } from 'react';
 import actions from "../../redux/modules/settings/selectedTab/actions";
 import { TabName } from "../../utils/constants/tabName";
+import FloatingActionButton from "../../components/CustomButtons/CustomSpeedDial";
 
 // @ts-ignore
 const useStyles = makeStyles(styles);
@@ -29,6 +30,9 @@ const Dashboard = () => {
             <CustomTab tabType={TabType.EXPERIENCE} title={myData.experience.name} icon={<WorkHistoryOutlinedIcon className={classes.icon} />} />
             <CustomTab tabType={TabType.EDUCATION} title={myData.education.name} icon={<SchoolOutlinedIcon className={classes.icon} />} />
             <CustomTab tabType={TabType.INTERESTS} title={myData.interests.name} icon={<SportsSoccerOutlinedIcon className={classes.icon} />} />
+            <div className={classes.button}>
+                <FloatingActionButton />
+            </div>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import styles from "../../assets/jss/views/experience/experienceStyle";
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux";
-import { Collapse, Divider, List, ListItemButton, ListItemText, Typography } from "@mui/material";
+import { CircularProgress, Collapse, Divider, List, ListItemButton, ListItemText, Typography } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import CustomBreadcrumbs from "../../components/CustomBreadcrumbs/CustomBreadcrumbs";
@@ -10,6 +10,8 @@ import WorkHistoryOutlinedIcon from '@mui/icons-material/WorkHistoryOutlined';
 import actions from "../../redux/modules/api/myData/experience/actions";
 import ConditionalRender from "../../components/ConditionalRender/ConditionalRender";
 import selectTabActions from "../../redux/modules/settings/selectedTab/actions";
+import CustomSpeedDial from "../../components/CustomButtons/CustomSpeedDial";
+import CustomFloatingAction from "../../components/CustomButtons/CustomFloatingAction";
 
 // @ts-ignore
 const useStyles = makeStyles(styles);
@@ -51,6 +53,9 @@ const Experience = () => {
                 show={experience.workPlace[0].id}
                 onTrue={() => (
                     <div className={classes.experienceWrapper}>
+                        <div className={classes.button}>
+                            <CustomSpeedDial />
+                        </div>
                         {experience.workPlace.map((exp: any) => (
                             <div className={classes.workPlaceWrapper}>
                                 <div className={classes.workPlaceNameWrapper}>
@@ -96,10 +101,13 @@ const Experience = () => {
                                 </div>
                             </div>
                         ))}
+                        <CustomFloatingAction />
                     </div>
                 )}
                 onFalse={() => (
-                    <h3>Loading...</h3>
+                    <div className={classes.experienceProgressWrapper} >
+                        <CircularProgress color="inherit" />
+                    </div>
                 )}
             />
 

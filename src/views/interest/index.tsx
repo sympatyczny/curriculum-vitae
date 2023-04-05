@@ -13,6 +13,9 @@ import ConditionalRender from "../../components/ConditionalRender/ConditionalRen
 import { useEffect } from "react";
 import actions from "../../redux/modules/api/myData/interest/actions";
 import selectTabActions from "../../redux/modules/settings/selectedTab/actions";
+import { CircularProgress } from "@mui/material";
+import CustomSpeedDial from "../../components/CustomButtons/CustomSpeedDial";
+import CustomFloatingAction from "../../components/CustomButtons/CustomFloatingAction";
 
 // @ts-ignore
 const useStyles = makeStyles(styles);
@@ -69,13 +72,19 @@ const Interest = () => {
                 show={interests.hobby[0].id}
                 onTrue={() => (
                     <div className={classes.interestWrapper}>
+                        <div className={classes.button}>
+                            <CustomSpeedDial />
+                        </div>
                         {interests.hobby.map((hobby: any) => (
                             <Hobby interestName={hobby.interestName} interestDescription={hobby.interestDescription} icon={getIcon(hobby.interestName)} />
                         ))}
+                        <CustomFloatingAction />
                     </div>
                 )}
                 onFalse={() => (
-                    <h3>Loading...</h3>
+                    <div className={classes.interestProgressWrapper} >
+                        <CircularProgress color="inherit" />
+                    </div>
                 )}
             />
         </>

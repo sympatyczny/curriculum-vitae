@@ -25,7 +25,6 @@ const CustomBreadcrumbs = ({
     <div>
       <Breadcrumbs separator="›" maxItems={2} aria-label="breadcrumb">
         <NavLink to=".." className={classes.dashboardLink}>
-        {/* <NavLink to=".." > */}
           <Typography variant='h6' color="text.primary">
             <HomeOutlinedIcon sx={{ mr: 0.5 }} fontSize="inherit" />
             {"Dashboard"}

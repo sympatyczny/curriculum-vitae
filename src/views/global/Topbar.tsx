@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Avatar, Box, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useContext } from "react";
 import { ColorModeContext, tokens } from "../../theme";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
@@ -7,7 +7,7 @@ import ConditionalRender from "../../components/ConditionalRender/ConditionalRen
 import { useTheme as useThemeCore } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import styles from "../../assets/jss/views/global/topBarStyle";
-
+import piotr from '../../assets/img/piotr.jpg'
 
 // @ts-ignore
 const useStyles = makeStyles(styles);
@@ -30,9 +30,12 @@ const Topbar = () => {
         <ConditionalRender
           show={xsDown}
           onTrue={() => (
-            <Typography variant="h3" component="div" >
-              Curriculum Vitae
-            </Typography>
+            <>
+              <Avatar alt="Piotr K." src={piotr} />
+              <Typography variant="h3" component="div" >
+                Curriculum Vitae
+              </Typography>
+            </>
           )}
         />
         <IconButton onClick={colorMode.toggleColorMode}>

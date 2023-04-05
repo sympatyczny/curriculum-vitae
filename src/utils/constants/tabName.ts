@@ -3,5 +3,6 @@ export enum TabName {
     EXPERIENCE = 'Experience',
     INTERESTS = 'Interests',
     PERSONAL_DATA = 'Personal data',
-    DASHBOARD = "Dashboard"
+    DASHBOARD = 'Dashboard',
+    CONTACT_ME = 'Contact me'
 }
