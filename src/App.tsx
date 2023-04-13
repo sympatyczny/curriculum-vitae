@@ -12,6 +12,7 @@ import Interest from './views/interest/index';
 import Sidebar from './views/global/sidebar/Sidebar';
 import Layout from './components/Layout/Layout';
 import ContactMe from './views/contactMe';
+import NotFound from './views/notFound';
 
 const App = () => {
 
@@ -42,6 +43,7 @@ const App = () => {
                   <Route path='interests' element={<Interest />} />
                   <Route path='contact-me' element={<ContactMe />} />
                 </Route>
+                <Route path='*' element={<NotFound />} />
               </Routes>
             </div>
           </main>
